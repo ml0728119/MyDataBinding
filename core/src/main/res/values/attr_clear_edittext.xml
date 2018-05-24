@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="core_ClearEditText">
+
+        <attr name="core_show_delete" format="boolean" />
+
+    </declare-styleable>
+
+
+</resources>

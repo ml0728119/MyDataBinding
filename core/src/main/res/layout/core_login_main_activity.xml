@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/core_bg_dl"
+        android:scaleType="centerCrop"
+
+        />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="16dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="26dp"
+        android:paddingRight="26dp">
+
+
+        <RelativeLayout
+            android:id="@+id/lay_title"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lay_title"
+            android:orientation="vertical">
+
+            <com.hxqc.business.views.ClearEditText
+                android:id="@+id/mCompanyEdit"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/core_bg_edit_input1"
+                android:drawableLeft="@drawable/core_login_bianma"
+                android:drawablePadding="6dp"
+                android:hint="请输入公司编码"
+                android:maxLines="1"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="#333"
+                android:textColorHint="#ababab"
+                android:textSize="14sp" />
+
+            <com.hxqc.business.views.ClearEditText
+                android:id="@+id/mUserNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/core_bg_edit_input1"
+                android:drawableLeft="@drawable/core_login_user"
+                android:drawablePadding="6dp"
+                android:hint="请输入账号"
+                android:maxLines="1"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="#333"
+                android:textColorHint="#ababab"
+                android:textSize="14sp" />
+
+            <com.hxqc.business.views.ClearEditText
+                android:id="@+id/mPswEdit"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/core_bg_edit_input1"
+                android:drawableLeft="@drawable/core_login_password"
+                android:drawablePadding="6dp"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="#333"
+                android:textColorHint="#ababab"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <!--style="@style/widget_btn_red"-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+
+            android:layout_below="@+id/lay_input"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="36dp"
+            android:onClick="onLogin"
+            android:text="登录"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

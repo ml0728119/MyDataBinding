@@ -1,0 +1,140 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+//apply plugin: 'tinyPIC'
+apply plugin: 'com.alibaba.arouter'
+
+android {
+    compileSdkVersion Integer.valueOf(project.compileSdkVersion)
+    defaultConfig {
+        applicationId "com.hxqc.business"
+        minSdkVersion Integer.valueOf(project.minSdkVersion)
+        targetSdkVersion Integer.valueOf(project.targetSdkVersion)
+        versionCode computeVersionCode()
+        versionName project.VERSION_NAME
+        resValue "string", "app_name", "掌上神器"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    resourcePrefix "app_"
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release_test {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        dexInProcess = true
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+        jumboMode = true
+    }
+    signingConfigs {
+        debug {
+            keyAlias 'wuhanhxqc'
+            keyPassword 'wuhanhxqc1126'
+            storeFile file("mall.keystore")
+            storePassword 'hxqc1126'
+            v2SigningEnabled false
+        }
+        release {
+            keyAlias 'wuhanhxqc'
+            keyPassword 'wuhanhxqc1126'
+            storeFile file("mall.keystore")
+            storePassword 'hxqc1126'
+            v2SigningEnabled false
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            assets.srcDirs = ['assets']
+        }
+    }
+    kapt {
+        arguments {
+            arg("targetModuleName", project.getName())
+            arg("moduleName", project.getName())
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    lintOptions {
+        abortOnError false
+    }
+    flavorDimensions "default"
+
+    productFlavors {
+        pgy {
+            dimension "default"
+        }
+        fir {
+            dimension "default"
+            resValue "string", "app_name", "掌上神器β"
+        }
+    }
+}
+
+//tinyinfo {
+//    apiKey = 'gdD9XCOV_tZnboaKrGgTal3ffx7rsz7k'
+//    //是否跳过此task
+//    skip = true
+//    //是否打印日志
+//    isShowLog = true
+//}
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:multidex:1.0.3'
+    api deps.constraint_layout
+    api deps.support.app_compat
+    api deps.support.recyclerview
+    api deps.support.cardview
+    api deps.room.runtime
+    api deps.lifecycle.runtime
+    api deps.lifecycle.extensions
+    api deps.paging
+    api deps.kotlin.stdlib
+
+    kapt deps.arouter.kapt_arouter_compiler
+    api deps.arouter.arouter_api
+    api deps.glide.runtime
+    kapt deps.databinding
+    api deps.core_ktx
+    api deps.gson
+//    implementation project(":core")
+}
+
+def computeVersionName() {
+    def formatter = new SimpleDateFormat('yyyy-MM-dd HH:mm')
+    def date = new Date()
+    return project.VERSION_NAME + "-" + formatter.format(date) + "dev"
+}
+
+def computeRNVersionName() {
+    def formatter = new SimpleDateFormat('yyyyMMddHHmm')
+    def date = new Date()
+    return "RN_" + project.VERSION_NAME + "-" + formatter.format(date)
+}
+
+static def computeVersionCode() {
+    def formatter = new SimpleDateFormat('yyyyMMddHH')
+    def date = new Date()
+    return Integer.valueOf(formatter.format(date))
+}

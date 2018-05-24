@@ -1,0 +1,87 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.alibaba.arouter'
+apply from: "./gradle-mvn-push.gradle"
+android {
+    compileSdkVersion Integer.valueOf(project.compileSdkVersion)
+    defaultConfig {
+        minSdkVersion Integer.valueOf(project.minSdkVersion)
+        targetSdkVersion Integer.valueOf(project.targetSdkVersion)
+        versionCode computeVersionCode()
+        versionName project.VERSION_NAME
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    resourcePrefix "core_"
+    buildTypes {
+        debug {
+        }
+        release_test {
+        }
+        release {
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            assets.srcDirs = ['assets']
+        }
+    }
+    kapt {
+        arguments {
+            arg("targetModuleName", project.getName())
+            arg("moduleName", project.getName())
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api deps.constraint_layout
+    api deps.support.app_compat
+    api deps.support.recyclerview
+    api deps.support.cardview
+    api deps.room.runtime
+    api deps.lifecycle.runtime
+    api deps.lifecycle.extensions
+    api deps.paging
+    api deps.kotlin.stdlib
+    kapt deps.arouter.kapt_arouter_compiler
+    api deps.arouter.arouter_api
+    api deps.glide.runtime
+    kapt deps.databinding
+    api deps.core_ktx
+    api deps.gson
+
+    api "com.hxqc:FaceDetector:0.0.10@aar"
+
+//    api "com.squareup.retrofit2:retrofit:2.1.0"
+//    api "com.squareup.retrofit2:converter-gson:2.1.0"
+//    api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+//    api 'com.squareup.okhttp3:okhttp:3.10.0'
+//    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    api deps.retrofit.runtime
+    api deps.retrofit.gson
+    api deps.okhttp_logging_interceptor
+    api('com.hxqc:common:1.0.5', {
+        exclude group: 'com.loopj.android', module: 'android-async-http'
+    })
+    api "com.hxqc.business:widget:0.0.2@aar"
+}
+
+
+static def computeVersionCode() {
+    def formatter = new SimpleDateFormat('yyyyMMddHH')
+    def date = new Date()
+    return Integer.valueOf(formatter.format(date))
+}

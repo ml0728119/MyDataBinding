@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.hxqc.business.activity.User"/>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+        >
+
+        <com.hxqc.business.activity.MyView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:leftValue="@{user.firstName}"
+            app:rightValue="@={user.lastName}"
+            />
+        <!---->
+        <!---->
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.firstName}"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="45dp"/>
+
+        <EditText
+            android:id="@+id/abc"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@={user.AAName}"/>
+
+        <Button
+            android:id="@+id/app_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"/>
+        <Button
+            android:id="@+id/app_button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"/>
+    </LinearLayout>
+</layout>

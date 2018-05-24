@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <com.hxqc.business.customtoolbar.CustomToolBar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+
+        </com.hxqc.business.customtoolbar.CustomToolBar>
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_launcher_round" />
+
+        <!--style="@style/widget_btn_border"-->
+        <TextView
+            android:id="@+id/re_take"
+            android:layout_marginTop="24dp"
+
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/image_view"
+            android:layout_width="92dp"
+            android:layout_height="32dp"
+            android:text="重拍"
+            android:textSize="14sp"
+            />
+
+
+        <TextView
+            android:layout_above="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:text="后续登录将通过刷脸验证身份\n请确认上图是本人"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginBottom="-24dp"
+            android:textSize="13sp"
+            android:textColor="#888"
+            />
+        <!--style="@style/widget_btn_orange"-->
+        <TextView
+            android:id="@+id/save"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="确认保存"
+            android:layout_margin="60dp"
+
+
+            />
+
+    </RelativeLayout>
+
+
+</layout>
